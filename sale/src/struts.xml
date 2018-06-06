@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+
+<constant name="struts.objectFactory" value="spring"></constant>
+	<package name="crm" namespace="/" extends="struts-default">
+	<!-- <global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.RuntimeException"></exception-mapping>
+		</global-exception-mappings> -->
+	<action name="userAction_*" class="UserAction" method="{1}">
+			<result name="TOLOGIN">/login.jsp</result>
+			<!-- <result name="error" >/login.jsp</result> -->
+			<!-- 重定向到展示商品action -->
+			<result name="TOPRODUCT" type="chain">		
+	             <!-- <param name="actionName">productAction_getAllProduct</param> -->
+	             <param name="actionName">productAction_selectProductByLimit</param>
+	             <param name="namespace">/</param>
+	         </result>
+		</action>
+		<action name="productAction_*" class="ProductAction" method="{1}">
+ 			<interceptor-ref name="defaultStack">
+                <param name="pimg.maximumSize">500000000</param>
+                <param name="pimg.allowedTypes">text/plain,application/vnd.ms-powerpoint</param>
+                <param name="pimg.allowedExtensions">.txt,.ppt</param>
+            </interceptor-ref>
+            <result name="TOHOMETEST">/homecopy.jsp</result>
+			<result name="TOHOME">/home.jsp</result>
+			<!-- <result name="error">/login.jsp</result> -->
+			<result name="TOMYHOME">/myhome.jsp</result>
+			<!-- <result type="json">
+              <param name="root">resultresult是action中设置的变量名，也是页面需要返回的数据，该变量必须有setter和getter方法</param>
+ 			</result> -->
+		</action>
+		<action name="ProductCarAction_*" class="ProductCarAction" method="{1}">
+			<result name="TOLOGIN">/login.jsp</result>
+			<!-- <result name="error" >/login.jsp</result> -->
+			<!-- 重定向到展示商品action -->
+			<result name="TOMYPRODUCTCAR">/myproductcar.jsp</result>
+		</action>
+	</package>
+</struts>

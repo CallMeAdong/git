@@ -11,7 +11,7 @@ import Dao.ProductDao;
 import domain.Product;
 import domain.ProductCar;
 
-public class ProductCarDaoImpl extends HibernateDaoSupport implements ProductCarDao{
+public class ProductCarDaoImpl extends BaseDaoImpl<ProductCar> implements ProductCarDao{
 
 	@Override
 	public void addProductToCar(ProductCar productCar) {

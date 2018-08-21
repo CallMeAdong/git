@@ -9,7 +9,7 @@ import Dao.ProductDao;
 import Service.ProductService;
 import domain.Product;
 import domain.User;
-import vo.PageBean;
+import vo.ProductPageBean;
 
 public class ProductServiceImpl implements ProductService{
 	private ProductDao pd;
@@ -66,9 +66,9 @@ public class ProductServiceImpl implements ProductService{
 		
 	}
 	@Override
-	public PageBean findPageBean(int currentPage, int currentCount) {
+	public ProductPageBean findPageBean(int currentPage, int currentCount) {
 		//目的：就是想办法封装一个PageBean 并返回
-				PageBean pageBean = new PageBean();
+				ProductPageBean pageBean = new ProductPageBean();
 				//1、当前页private int currentPage;
 				pageBean.setCurrentPage(currentPage);
 				//2、当前页显示的条数private int currentCount;
@@ -108,6 +108,11 @@ public class ProductServiceImpl implements ProductService{
 				pageBean.setProductList(productList);
 				
 				return pageBean;
+	}
+	@Override
+	public void updateCount(Product product) {
+		pd.updateCount(product);
+		
 	}
 
 }

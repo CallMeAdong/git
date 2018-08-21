@@ -7,29 +7,47 @@
 
 <constant name="struts.objectFactory" value="spring"></constant>
 	<package name="crm" namespace="/" extends="struts-default">
+	<!-- <interceptors>
+		<interceptor name="SaleLoginIntercepter" class="Intercepter.SaleLoginIntercepter">
+			<param name="excludeMethods">login,regist,selectProductByLimit,isExistUname</param>			
+		</interceptor>
+		<interceptor-stack name="MyStack">
+			<interceptor-ref name="SaleLoginIntercepter"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</interceptor-stack>
+	</interceptors>
+	<default-interceptor-ref name="MyStack"></default-interceptor-ref> -->
+	<global-results>
+			<result name="TOLOGIN">/login.jsp</result>
+	</global-results>
 	<!-- <global-exception-mappings>
 			<exception-mapping result="error" exception="java.lang.RuntimeException"></exception-mapping>
 		</global-exception-mappings> -->
 	<action name="userAction_*" class="UserAction" method="{1}">
-			<result name="TOLOGIN">/login.jsp</result>
+			<result name="TOREGIST">/regist.jsp</result>
 			<!-- <result name="error" >/login.jsp</result> -->
 			<!-- 重定向到展示商品action -->
-			<result name="TOPRODUCT" type="chain">		
+			<result name="TOPRODUCT" type="chain">
+					
 	             <!-- <param name="actionName">productAction_getAllProduct</param> -->
 	             <param name="actionName">productAction_selectProductByLimit</param>
 	             <param name="namespace">/</param>
 	         </result>
 		</action>
 		<action name="productAction_*" class="ProductAction" method="{1}">
- 			<interceptor-ref name="defaultStack">
+ 			<!-- <interceptor-ref name="defaultStack">
                 <param name="pimg.maximumSize">500000000</param>
                 <param name="pimg.allowedTypes">text/plain,application/vnd.ms-powerpoint</param>
                 <param name="pimg.allowedExtensions">.txt,.ppt</param>
-            </interceptor-ref>
+            </interceptor-ref> -->
             <result name="TOHOMETEST">/homecopy.jsp</result>
+            <result name="MYHOME">/myhome.jsp</result>
 			<result name="TOHOME">/home.jsp</result>
 			<!-- <result name="error">/login.jsp</result> -->
-			<result name="TOMYHOME">/myhome.jsp</result>
+			<result name="TOMYHOME" type="chain">
+				<param name="actionname">productAction_findByUid</param>
+				<param name="namespace">/</param>
+			</result>
 			<!-- <result type="json">
               <param name="root">resultresult是action中设置的变量名，也是页面需要返回的数据，该变量必须有setter和getter方法</param>
  			</result> -->
@@ -39,6 +57,9 @@
 			<!-- <result name="error" >/login.jsp</result> -->
 			<!-- 重定向到展示商品action -->
 			<result name="TOMYPRODUCTCAR">/myproductcar.jsp</result>
+		</action>
+		<action name="usermanageaction_*" class="UserManageAction" method="{1}">
+			<result name="usermanager">/usermanager.jsp</result>
 		</action>
 	</package>
 </struts>

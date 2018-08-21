@@ -1,6 +1,7 @@
 package Dao;
 
 import domain.User;
+import vo.PageBean;
 
 public interface UserDao {
 
@@ -8,5 +9,7 @@ public interface UserDao {
 
 	void addUser(User u);
 
-	
+	boolean findByUname(String uname);
+
+	void pageQuery(PageBean userPageBean);
 }

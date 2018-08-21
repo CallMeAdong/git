@@ -20,7 +20,7 @@ import Service.ProductService;
 import domain.Product;
 import domain.User;
 import net.sf.json.JSONObject;
-import vo.PageBean;
+import vo.ProductPageBean;
 
 public class ProductAction extends ActionSupport implements ModelDriven<Product>{
 	public Product product = new Product();
@@ -52,7 +52,7 @@ public class ProductAction extends ActionSupport implements ModelDriven<Product>
 		System.out.println(user.toString());
 		List<Product> myproductslist = productservice.findByUid(user);
 		ActionContext.getContext().getSession().put("myproductlist", myproductslist);
-		return "TOMYHOME";
+		return "MYHOME";
 	}
 	//通过商品名称下架商品
 	public String deleteByPname() {
@@ -101,8 +101,8 @@ public class ProductAction extends ActionSupport implements ModelDriven<Product>
 		String currentPageStr = ServletActionContext.getRequest().getParameter("currentPage");
 		if(currentPageStr == null) currentPageStr = "1";
 		int currentPage = Integer.parseInt(currentPageStr);
-		int currentCount = 2;
-		PageBean pageBean = productservice.findPageBean(currentPage, currentCount);
+		int currentCount = 4;
+		ProductPageBean pageBean = productservice.findPageBean(currentPage, currentCount);
 		ActionContext.getContext().getSession().put("pageBean", pageBean);
 		return "TOHOMETEST";
 	}

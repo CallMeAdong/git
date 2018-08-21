@@ -17,7 +17,7 @@ import Dao.ProductDao;
 import domain.Product;
 import domain.User;
 
-public class ProductDaoImpl extends HibernateDaoSupport implements ProductDao{
+public class ProductDaoImpl extends BaseDaoImpl<Product> implements ProductDao{
 	//获得所有商品
 	@Override
 	public List getAllProduct() {
@@ -109,5 +109,10 @@ public class ProductDaoImpl extends HibernateDaoSupport implements ProductDao{
 		query.setMaxResults(currentCount);
 		List<Product> productList = query.list();
 		return productList;
+	}
+	@Override
+	public void updateCount(Product product) {
+		getHibernateTemplate().update(product);
+		
 	}	
 }

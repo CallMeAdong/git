@@ -22,4 +22,6 @@ public interface ProductDao {
 	int getTotalCount();
 	
 	List<Product> findProductListForPageBean(int index,int currentCount);
+
+	void updateCount(Product product);
 }

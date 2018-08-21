@@ -35,6 +35,8 @@ public class ProductCarAction extends ActionSupport implements ModelDriven<Produ
 		ProductCar productcar =  productcarservice.findByPid(product.getPid());
 		if(productcar == null) {
 			productcarservice.addProductToCar(productCar);
+			product.setCounts(product.getCounts()+1);
+			productservice.updateCount(product);
 			System.out.println("添加成功");
 		}else {
 			System.out.println("购物车里已经存在该商品");

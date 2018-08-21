@@ -27,5 +27,10 @@ public class UserServiceImpl implements UserService{
 	public void addUser(User u) {
 		ud.addUser(u);
 	}
+	@Override
+	public boolean findByUname(String uname) {
+		boolean isExist =  ud.findByUname(uname);
+		return isExist;
+	}
 
 }

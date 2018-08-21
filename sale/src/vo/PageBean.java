@@ -1,65 +1,44 @@
 package vo;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import domain.Product;
+import org.hibernate.criterion.DetachedCriteria;
 
-public class PageBean<T> {
-	
-	//当前页
-	private int currentPage;
-	//当前页显示的条数
-	private int currentCount;
-	//总条数
-	private int totalCount;
-	//总页数
-	private int totalPage;
-	//每页显示的数据
-	private List<T> productList = new ArrayList<T>();
-	
-	
+public class PageBean {
+	private int currentPage;//当前页码
+	private int pageSize;//每页显示条数
+	private DetachedCriteria detachedcriteria;
+	private int total;//总条数
+	private List rows;//当前页需要展示的数据集合
 	public int getCurrentPage() {
 		return currentPage;
 	}
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
 	}
-	public int getCurrentCount() {
-		return currentCount;
+	public int getPageSize() {
+		return pageSize;
 	}
-	public void setCurrentCount(int currentCount) {
-		this.currentCount = currentCount;
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
 	}
-	public int getTotalCount() {
-		return totalCount;
+	public DetachedCriteria getDetachedcriteria() {
+		return detachedcriteria;
 	}
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
+	public void setDetachedcriteria(DetachedCriteria detachedcriteria) {
+		this.detachedcriteria = detachedcriteria;
 	}
-	public int getTotalPage() {
-		return totalPage;
+	public int getTotal() {
+		return total;
 	}
-	public void setTotalPage(int totalPage) {
-		this.totalPage = totalPage;
+	public void setTotal(int total) {
+		this.total = total;
 	}
-	public List<T> getProductList() {
-		return productList;
+	public List getRows() {
+		return rows;
 	}
-	public void setProductList(List<T> productList) {
-		this.productList = productList;
+	public void setRows(List rows) {
+		this.rows = rows;
 	}
 	
-	
-	
-	
-
-
-
-
-
-
-
-
-
 }

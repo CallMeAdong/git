@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+   <!--  private int pid;//商品id
+	private int uid;//卖家id
+	private String pname;//商品名字
+	private double price;//商品价格
+	private String pimg;//商品图片
+	private String kinds;//商品类型
+	private Date date;//上架日期
+	private Boolean issale;//是否卖出
+	private String info;//商品描述
+	private double counts;//点击数量
+	private double number;//商品数量 -->
+    <hibernate-mapping package="domain" >
+	<class name="Product" table="product" >
+		<id name="pid"  >
+			<generator class="native"></generator>
+		</id>
+		<property name="uid"  ></property>
+		<property name="pname"  ></property>
+		<property name="price"  ></property>
+		<property name="pimg"  ></property>
+		<property name="kinds"  ></property>
+		<property name="date"  ></property>
+		<property name="issale"  ></property>
+		<property name="info"  ></property>
+		<property name="counts"  ></property>
+		<property name="number"  ></property>
+		<property name="uphone"  ></property>
+	</class>
+</hibernate-mapping>

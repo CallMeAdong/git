@@ -49,12 +49,7 @@
 		<!-- 配置hibernate基本信息 -->
 		<property name="hibernateProperties">
 			<props>
-				<!--  必选配置 -->
-			<!-- 	<prop key="hibernate.connection.driver_class" >com.mysql.jdbc.Driver</prop>
-				<prop key="hibernate.connection.url" >jdbc:mysql:///Test</prop>
-				<prop key="hibernate.connection.username" >root</prop>
-				<prop key="hibernate.connection.password" >qwerty123456</prop>
-			-->
+				
 				<prop key="hibernate.dialect" >org.hibernate.dialect.MySQLDialect</prop>
 				
 				<!--  可选配置 -->
@@ -64,7 +59,7 @@
 			</props>
 		</property>
 		<!-- 引入orm元数据,指定orm元数据所在的包路径,spring会自动读取包中的所有配置 -->
-		<property name="mappingDirectoryLocations" value="classpath:domain" ></property>
+		<property name="mappingDirectoryLocations" value="classpath:domain"></property>
 	</bean>
 	<!-- 用户 -->
 	<bean name="UserDao" class="Dao.Impl.UserDaoImpl">
@@ -99,5 +94,17 @@
 	<bean name="ProductCarAction" class="Action.ProductCarAction" scope="prototype">
 		<property name="productcarservice" ref="productCarService"></property>
 		<property name="productservice" ref="productService"></property>
+	</bean>
+	<!-- 用户管理 -->
+	<bean name="UserManageDao" class="Dao.Impl.UserManageDaoImpl">
+		<!-- 注入sessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" ></property>
+	</bean>
+	<bean name="UserManageService" class="Service.Impl.UserManageServiceImpl">
+		<property name="userManageDao" ref="UserManageDao"></property>
+	</bean>
+	<bean name="UserManageAction" class="Action.UserManageAction" scope="prototype">
+		<property name="userManageService" ref="UserManageService"></property>
+		
 	</bean>
 </beans>

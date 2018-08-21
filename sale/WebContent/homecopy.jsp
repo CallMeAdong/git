@@ -15,23 +15,47 @@
 <script type="text/javascript">
 
 </script>
+<style>
+	#search{
+		background-attachment: fixed;
+		overflow-y:scroll;
+		text-align: center;
+		margin:0 auto;
+		width: 750px;
+	}
+	#myproduct{
+	margin-top:-23px;
+	float:right;
+	}
+	#productList{
+		width: 674px;
+		float:left;
+		margin-top: 20px;
+		text-align: center;
+	}
+</style>
 <body>
 	<form action="${pageContext.request.contextPath}/productAction_findByInfo">
-		<div id="search">
-		商品名称<input type="text" name="pname">
-		所属分类<select name="kinds">
-				<option value="学习资料" >学习资料</option>
-				<option value="体育器材" >体育器材</option>
-			</select>
-			<input type="submit" value="查找">
-		</div>
+		<div id="bodyhead">
+			<div id="search">
+			商品名称<input type="text" name="pname">
+			所属分类<select name="kinds">
+					<option value="学习资料" >学习资料</option>
+					<option value="体育器材" >体育器材</option>
+				</select>
+				<input type="submit" value="查找">
+			</div>
+			<div id="myproduct">
+				<a href="${pageContext.request.contextPath}/productAction_findByUid">我上架的物品</a>
+			</div>
+		</div>	
 			<c:forEach items="${pageBean.productList}" var="product">
 			<div id="productList">
 				<tr>
-					<td>商品图片:<img src="${product.pimg}" width="170" height="170" style="display: inline-block;"></td>
+					<td><img src="${product.pimg}" width="170" height="170" style="display: inline-block;margin: 0 auto;"></td></br>
 					<td>商品名称:${product.pname}</td>
 					<td>商品价格:${product.price}</td>
-					<td>上架日期:${product.date}</td>
+					<td>上架日期:${product.date}</td></br>
 					<td>商品信息:${product.info}</td>
 					<td>商品数量:${product.number}</td>
 					<td>浏览量:${product.counts}</td>
@@ -40,8 +64,9 @@
 				</tr>
 			</div>
 			</c:forEach>
-	</form>
-	<div style="width: 380px; margin: 0 auto; margin-top: 50px;">
+	
+	
+	<div style="width: 380px; margin: 0 auto; margin-top: 260px;">
 		<ul class="pagination" style="text-align: center; margin-top: 10px;">
 			<!-- 上一页 -->
 			<!-- 判断当前页是否是第一页 -->
@@ -88,7 +113,8 @@
 		
 		</ul>
 	</div>
-	<a href="${pageContext.request.contextPath}/productAction_findByUid">我上架的物品</a>
+	</form>
+	
 	<%-- <a href="${pageContext.request.contextPath}/productAction_findByUid">我上架的物品</a> --%>
 </body>
 </html>

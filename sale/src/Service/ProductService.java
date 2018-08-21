@@ -4,7 +4,7 @@ import java.util.List;
 
 import domain.Product;
 import domain.User;
-import vo.PageBean;
+import vo.ProductPageBean;
 
 public interface ProductService {
 
@@ -20,5 +20,7 @@ public interface ProductService {
 
 	Product findByPid(int pid);
 	
-	PageBean findPageBean(int currentPage,int currentCount);
+	ProductPageBean findPageBean(int currentPage,int currentCount);
+
+	void updateCount(Product product);
 }

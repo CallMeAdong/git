@@ -27,4 +27,7 @@
 		<property name="phone"  ></property>
 		<property name="loginstate"  ></property>
 	</class>
+	<query name="usermanage.delete">
+		DELETE from User where uid = ?
+	</query>
 </hibernate-mapping>
